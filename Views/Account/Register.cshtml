@@ -1,0 +1,80 @@
+﻿@model SiteSafe4.ViewModels.RegisterVM
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<div class="register-page">
+    <div class="register-card">
+
+        <!-- LEFT: Register Form -->
+        <div class="register-left">
+            <div class="brand">
+                <img src="~/images/logo-sitesafe.jpeg" alt="SiteSafe Logo" />
+            </div>
+            <h2>Create Account</h2>
+
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="UniqueId">Unique ID</label>
+                    <input asp-for="UniqueId" placeholder="Enter your unique ID" />
+                    <span asp-validation-for="UniqueId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Username">Username</label>
+                    <input asp-for="Username" placeholder="Enter your username" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" placeholder="Enter your email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input asp-for="Password" type="password" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" type="password" placeholder="Confirm your password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Role">Select Role</label>
+                    <select asp-for="Role">
+                        <option value="">Select Role</option>
+                        <option value="Supervisor">Supervisor</option>
+                        <option value="SafetyOfficer">Safety Officer</option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn">Register</button>
+            </form>
+
+            <div class="login-link">
+                Already have an account? <a asp-controller="Account" asp-action="Login">Login here</a>
+            </div>
+        </div>
+
+        <!-- RIGHT: Illustration -->
+        <div class="register-right">
+            <img src="~/images/work_safe.jpeg" alt="Safety Illustration" />
+            <h3>AI-powered Construction Safety</h3>
+            <p>PPE & Fatigue Detection in Real Time</p>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

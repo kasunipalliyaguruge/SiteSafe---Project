@@ -1,0 +1,126 @@
+﻿@{
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"] - SiteSafe</title>
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/settings.css" />
+
+
+</head>
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <h2 class="logo">SiteSafe</h2>
+
+            <ul>
+                <li class="@(currentAction == "Index" ? "active" : "")">
+                    <a asp-controller="Dashboard" asp-action="Index">📊 Dashboard</a>
+                </li>
+
+                <li class="@(currentAction == "LiveMonitoring" ? "active" : "")">
+                    <a asp-controller="Dashboard" asp-action="LiveMonitoring">📹 Live Monitoring</a>
+                </li>
+
+                <li class="@(currentAction == "PPEDetection" ? "active" : "")">
+                    <a asp-controller="Dashboard" asp-action="PPEDetection">🦺 PPE Detection</a>
+                </li>
+
+                <li class="@(currentAction == "FatigueDetection" ? "active" : "")">
+                    <a asp-controller="Dashboard" asp-action="FatigueDetection">😴 Fatigue Detection</a>
+                </li>
+
+                <li class="@(currentAction == "Alerts" ? "active" : "")">
+                    <a asp-controller="Dashboard" asp-action="Alerts">🚨 Alerts</a>
+                </li>
+
+                <li class="@(currentAction == "Reports" ? "active" : "")">
+                    <a asp-controller="Dashboard" asp-action="Reports">📄 Reports</a>
+                </li>
+
+                <li class="@(currentAction == "Settings" ? "active" : "")">
+                    <a asp-controller="Dashboard" asp-action="Settings">⚙️ Settings</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            @RenderBody()
+        </main>
+
+    </div>
+
+
+
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-compat.js"></script>
+
+    <script>const firebaseConfig = {
+            apiKey: "AIzaSyAb6LoXNUUyx784OrnW_AebLoy_qNOjk6Y",
+            authDomain: "sitesafe-17331.firebaseapp.com",
+            projectId: "sitesafe-17331",
+            storageBucket: "sitesafe-17331.firebasestorage.app",
+            messagingSenderId: "672319473104",
+            appId: "1:672319473104:web:9cfdbc3cc07892effda5d5"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/firebase-messaging-sw.js')
+                .then((reg) => {
+                    console.log("Service Worker registered:", reg);
+                })
+                .catch(err => console.error("SW error:", err));
+        }
+
+
+        // ✅ USER GESTURE REQUIRED
+        document.getElementById("enableNotificationsBtn")
+            ?.addEventListener("click", async () => {
+                try {
+                    const permission = await Notification.requestPermission();
+                    if (permission !== "granted") {
+                        alert("Notifications are required to receive alerts.");
+                        return;
+                    }
+
+                    const token = await messaging.getToken({
+                        vapidKey: "BALu-Vn91kF-ZwslGBy0VFb1PHyUSyHizSP3Im9ZkvhVKBWp7yKLqJvQKhsC4DL3WYv4sf1Jn_KVQUqvZSXK6rs"
+                    });
+
+                    console.log("FCM Token:", token);
+
+                    await fetch("/api/fcm/register", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ fcmToken: token })
+                    });
+
+                    document.getElementById("notifStatus").innerText = "🔔 Alerts enabled";
+                    alert("✅ Alerts enabled successfully!");
+
+                } catch (err) {
+                    console.error("FCM error:", err);
+                }
+            });</script>
+
+
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

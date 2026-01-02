@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_DashboardLayout";
+    var data = (dynamic)Model;
+
+}
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+    <h1>Safety Overview</h1>
+
+    <!-- STATS CARDS -->
+    <div class="stats-cards">
+        <div class="card">
+            <h3>Total Workers</h3>
+            <p>@data.WorkersCount</p>
+        </div>
+        <div class="card">
+            <h3>Active Cameras</h3>
+            <p>@data.CamerasCount</p>
+        </div>
+        <div class="card alert">
+            <h3>Total Alerts</h3>
+            <p>@data.AlertsCount</p>
+        </div>
+    </div>
+
+    <!-- LIVE CCTV PLACEHOLDER -->
+    <section class="cctv-section">
+        <h2>Live CCTV Monitoring</h2>
+        <div class="cctv-box">
+            <span>Live Camera Feed</span>
+        </div>
+    </section>
+
+    <!-- REAL-TIME ALERTS -->
+    <section class="alerts-section">
+        <h2>Recent Alerts</h2>
+        <div id="alerts-list" class="alerts-list">
+            <div class="no-alerts">No alerts yet.</div>
+        </div>
+    </section>
+    <button id="enableNotificationsBtn" class="btn btn-primary">
+        🔔 Enable Safety Alerts
+    </button>
+
+    <p id="notifStatus">🔕 Alerts disabled</p>
+
+
+</main>
+
+@section Scripts {
+
+    <!-- Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- SignalR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+
+    <script>const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/alertHub")
+            .withAutomaticReconnect()
+            .build();
+
+        // Match Hub: (type, message)
+        connection.on("ReceiveAlert", function (type, message) {
+            console.log("🚨 ALERT:", type, message);
+            window.alert("🚨 " + type + ": " + message);
+        });
+
+        connection.start()
+            .then(() => console.log("✅ SignalR Connected"))
+            .catch(err => console.error(err.toString()));</script>
+}
+
+

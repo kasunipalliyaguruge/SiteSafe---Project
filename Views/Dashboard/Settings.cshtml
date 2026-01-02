@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Settings";
+    Layout = "_DashboardLayout";
+}
+
+<link rel="stylesheet" href="~/css/settings.css" />
+
+<h1 class="page-title">⚙️ System Settings</h1>
+
+<div class="settings-container">
+
+    <!-- ACCOUNT SETTINGS -->
+    <div class="settings-card">
+        <h3>👤 Account Settings</h3>
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" value="Supervisor01" disabled />
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" value="supervisor@sitesafe.com" />
+        </div>
+
+        <button class="btn primary">Update Account</button>
+    </div>
+
+    <!-- SECURITY SETTINGS -->
+    <div class="settings-card">
+        <h3>🔒 Security Settings</h3>
+
+        <div class="form-group">
+            <label>Change Password</label>
+            <input type="password" placeholder="New password" />
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" placeholder="Confirm password" />
+        </div>
+
+        <button class="btn warning">Change Password</button>
+    </div>
+
+    <!-- ALERT SETTINGS -->
+    <div class="settings-card">
+        <h3>🚨 Alert Preferences</h3>
+
+        <div class="toggle-group">
+            <label>
+                <input type="checkbox" checked />
+                PPE Violation Alerts
+            </label>
+        </div>
+
+        <div class="toggle-group">
+            <label>
+                <input type="checkbox" checked />
+                Fatigue Detection Alerts
+            </label>
+        </div>
+
+        <div class="toggle-group">
+            <label>
+                <input type="checkbox" />
+                Email Notifications
+            </label>
+        </div>
+
+        <button class="btn success">Save Alert Settings</button>
+    </div>
+
+    <!-- SYSTEM SETTINGS -->
+    <div class="settings-card">
+        <h3>🛠 System Configuration</h3>
+
+        <div class="form-group">
+            <label>Camera Refresh Rate</label>
+            <select>
+                <option>5 seconds</option>
+                <option selected>10 seconds</option>
+                <option>30 seconds</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Fatigue Threshold</label>
+            <input type="range" min="0" max="100" value="70" />
+            <small>Alert when fatigue exceeds 70%</small>
+        </div>
+
+        <button class="btn primary">Save System Settings</button>
+    </div>
+
+</div>

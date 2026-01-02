@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Live Monitoring";
+    Layout = "_DashboardLayout";
+    var data = (dynamic)Model;
+
+}
+
+<!-- MAIN CONTENT -->
+<link rel="stylesheet" href="~/css/live_monitoring.css" />
+
+<h1 class="page-title">Live CCTV Monitoring</h1>
+
+<div class="live-monitoring-grid">
+
+    <!-- LEFT: CCTV FEED -->
+    <section class="cctv-panel">
+        <div class="cctv-feed">
+            <span>Live Camera Feed</span>
+        </div>
+    </section>
+
+    <!-- RIGHT: STATUS PANELS -->
+    <section class="status-panel">
+
+        <!-- PPE STATUS -->
+        <div class="card">
+            <h3>🦺 PPE Status Indicators</h3>
+
+            <ul class="ppe-list">
+                <li>
+                    <span>Helmet</span>
+                    <span class="status yes">Yes</span>
+                </li>
+                <li>
+                    <span>Vest</span>
+                    <span class="status yes">Yes</span>
+                </li>
+                <li>
+                    <span>Gloves</span>
+                    <span class="status no">No</span>
+                </li>
+                <li>
+                    <span>Boots</span>
+                    <span class="status yes">Yes</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- FATIGUE INDICATORS -->
+        <div class="card">
+            <h3>😴 Worker Fatigue Indicators</h3>
+
+            <div class="fatigue-item">
+                <label>Eye Closure %</label>
+                <div class="progress-bar">
+                    <div class="progress warning" style="width: 65%"></div>
+                </div>
+                <small>65%</small>
+            </div>
+
+            <div class="fatigue-item">
+                <label>Drowsiness Score</label>
+                <canvas id="fatigueChart"></canvas>
+            </div>
+        </div>
+
+        <!-- ALERT BUTTON -->
+        <div class="alert-action">
+            <button class="alert-btn">🚨 Generate Alert</button>
+        </div>
+
+    </section>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>const ctx = document.getElementById('fatigueChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Low', 'Medium', 'High'],
+                datasets: [{
+                    label: 'Drowsiness Level',
+                    data: [2, 5, 8],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });</script>
+}

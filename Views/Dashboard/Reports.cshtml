@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+    Layout = "_DashboardLayout";
+}
+
+<link rel="stylesheet" href="~/css/reports.css" />
+
+<h1 class="page-title">📄 Safety Reports</h1>
+
+<!-- FILTERS -->
+<div class="report-filters">
+    <div class="filter">
+        <label>Date Range</label>
+        <input type="date" />
+        <input type="date" />
+    </div>
+
+    <div class="filter">
+        <label>Camera</label>
+        <select>
+            <option>All Cameras</option>
+            <option>Camera 1</option>
+            <option>Camera 2</option>
+        </select>
+    </div>
+
+    <div class="filter">
+        <label>Report Type</label>
+        <select>
+            <option>PPE Compliance</option>
+            <option>Fatigue Analysis</option>
+            <option>Alerts Summary</option>
+        </select>
+    </div>
+
+    <button class="btn primary">Generate</button>
+</div>
+
+<!-- SUMMARY CARDS -->
+<div class="summary-cards">
+    <div class="summary-card">
+        <h3>PPE Compliance</h3>
+        <p>89%</p>
+    </div>
+
+    <div class="summary-card">
+        <h3>Fatigue Incidents</h3>
+        <p>12</p>
+    </div>
+
+    <div class="summary-card alert">
+        <h3>Total Alerts</h3>
+        <p>24</p>
+    </div>
+</div>
+
+<!-- CHARTS -->
+<div class="charts-grid">
+
+    <div class="chart-card">
+        <h3>PPE Compliance Trend</h3>
+        <canvas id="ppeChart"></canvas>
+    </div>
+
+    <div class="chart-card">
+        <h3>Fatigue Detection Trend</h3>
+        <canvas id="fatigueChart"></canvas>
+    </div>
+
+</div>
+
+<!-- ALERTS TABLE -->
+<div class="table-card">
+    <h3>Recent Alerts</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Camera</th>
+                <th>Type</th>
+                <th>Severity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2025-04-15</td>
+                <td>Camera 2</td>
+                <td>PPE Violation</td>
+                <td class="high">High</td>
+            </tr>
+            <tr>
+                <td>2025-04-16</td>
+                <td>Camera 1</td>
+                <td>Fatigue Detected</td>
+                <td class="medium">Medium</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>// PPE Chart
+        new Chart(document.getElementById('ppeChart'), {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                datasets: [{
+                    label: 'PPE Compliance %',
+                    data: [85, 88, 90, 87, 92],
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Fatigue Chart
+        new Chart(document.getElementById('fatigueChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                datasets: [{
+                    label: 'Fatigue Cases',
+                    data: [2, 3, 1, 4, 2]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } }
+            }
+        });</script>
+}

@@ -1,0 +1,72 @@
+﻿@model SiteSafe4.Models.LoginVM
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="login-page">
+    <div class="login-card">
+
+        <!-- LEFT: Login Form -->
+        <div class="login-left">
+            <div class="brand">
+                <img src="~/images/logo-sitesafe.jpeg" alt="SiteSafe Logo" />
+
+            </div>
+            <h2>Welcome to SiteSafe!</h2>
+
+            <form asp-action="Login" method="post">
+
+                <!-- Role -->
+                <label>User Role</label>
+                <select asp-for="Role" class="input">
+                    <option value="">Select role</option>
+                    <option value="Supervisor">Supervisor</option>
+                    <option value="SafetyOfficer">Safety Officer</option>
+                </select>
+                <span asp-validation-for="Role" class="error"></span>
+
+                <!-- Username -->
+                <label>Username</label>
+                <input asp-for="Username" class="input" placeholder="Enter username" />
+                <span asp-validation-for="Username" class="error"></span>
+
+                <!-- Password -->
+                <label>Password</label>
+                <input asp-for="Password" type="password" class="input" placeholder="Enter password" />
+                <span asp-validation-for="Password" class="error"></span>
+
+                <div class="options">
+                    <label class="remember">
+                        <input asp-for="RememberMe" />
+                        Remember Me
+                    </label>
+
+                    <a asp-controller="Account" asp-action="ForgotPassword" class="forgot">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    Login
+                </button>
+                <!-- Register link -->
+                <div class="register-link" style="margin-top: 15px; text-align: center;">
+                    Don't have an account?
+                    <a asp-controller="Account" asp-action="Register">Register here</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- RIGHT: Illustration -->
+        <div class="login-right">
+            <img src="~/images/work_safe.jpeg" alt="Safety Illustration" />
+            <h3>AI-powered Construction Safety</h3>
+            <p>PPE & Fatigue Detection in Real Time</p>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

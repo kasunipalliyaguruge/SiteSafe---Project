@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SiteSafe4.Models.Camera>
+@{
+    ViewData["Title"] = "Live Monitoring";
+}
+<h1>Live Monitoring</h1>
+
+<div class="camera-grid">
+    @foreach (var cam in Model)
+    {
+        <div class="camera-card">
+            <h4>Camera #@cam.Id</h4>
+            <div class="camera-stream">
+                <!-- placeholder: in production embed HLS/RTSP player or pass stream URL to front-end video player -->
+                <img src="~/images/logo-sitesafe.png" alt="camera" />
+                <p>Location: @cam.Location</p>
+            </div>
+            <button onclick="simulateAlert('@cam.Id')">Simulate PPE Alert</button>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>async function simulateAlert(cameraId) {
+        await fetch('/api/api/alert', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ type: 0, description: 'PPE missing (simulated)', cameraId: parseInt(cameraId) })
+        });
+        alert('Simulated alert sent to server');
+    }</script>
+}
