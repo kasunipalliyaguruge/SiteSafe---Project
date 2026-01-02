@@ -1,0 +1,116 @@
+﻿.page-title {
+    margin-bottom: 20px;
+}
+
+.live-monitoring-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+/* CCTV PANEL */
+.cctv-panel {
+    background: #111;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.cctv-feed {
+    height: 450px;
+    background: #000;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1ecbe1;
+    font-size: 20px;
+    border: 2px dashed #1ecbe1;
+}
+
+/* STATUS PANEL */
+.status-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+    .card h3 {
+        margin-bottom: 15px;
+    }
+
+/* PPE LIST */
+.ppe-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .ppe-list li {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+.status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+    .status.yes {
+        background: #d4f8e8;
+        color: #1b8a5a;
+    }
+
+    .status.no {
+        background: #ffd6d6;
+        color: #b30000;
+    }
+
+/* FATIGUE */
+.fatigue-item {
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    height: 14px;
+    background: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #ff9800;
+}
+
+    .progress.warning {
+        background: linear-gradient(to right, #ff9800, #ff4d4f);
+    }
+
+/* ALERT BUTTON */
+.alert-action {
+    text-align: center;
+}
+
+.alert-btn {
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 100%;
+}
+
+    .alert-btn:hover {
+        background: #d9363e;
+    }

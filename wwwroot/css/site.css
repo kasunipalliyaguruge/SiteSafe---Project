@@ -1,0 +1,220 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f7fb;
+    color: #0f1724;
+}
+
+.topbar {
+    background: #042a4b;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.login-box {
+    max-width: 400px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 12px;
+    padding: 8px 12px;
+    border: none;
+    background: #0b5ed7;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.card {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    min-width: 140px;
+    text-align: center;
+}
+
+.camera-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+    gap: 12px;
+}
+
+.camera-card {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.footer {
+    padding: 10px 20px;
+    text-align: center;
+    margin-top: 20px;
+    color: #6b7280;
+}
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f4f6f9;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    background: #042a4b;
+    color: white;
+    padding: 20px;
+}
+
+    .sidebar .logo {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar li {
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+        .sidebar li:hover,
+        .sidebar li.active {
+            background: #0b5ed7;
+        }
+
+/* MAIN */
+.main-content {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+/* STATS */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+    .card h3 {
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+    .card p {
+        font-size: 30px;
+        color: #0b5ed7;
+    }
+
+    .card.alert p {
+        color: #dc3545;
+    }
+
+/* CCTV */
+.cctv-section {
+    margin-top: 30px;
+}
+
+.cctv-box {
+    height: 260px;
+    background: #000;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #facc15;
+    font-size: 18px;
+}
+
+/* ALERTS */
+.alerts-section {
+    margin-top: 30px;
+}
+
+.alerts-list {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.alert-item {
+    padding: 10px;
+    border-left: 5px solid #dc3545;
+    background: #fff5f5;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+    .alert-item strong {
+        display: block;
+    }
+
+    .alert-item small {
+        color: #6b7280;
+    }
+
+.no-alerts {
+    color: #6b7280;
+    text-align: center;
+}
+

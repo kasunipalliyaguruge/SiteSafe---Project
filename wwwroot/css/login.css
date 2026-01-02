@@ -1,0 +1,134 @@
+﻿body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #6f8cff, #8fa4ff);
+}
+
+.login-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    display: flex;
+    width: 900px;
+    height: 520px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+/* LEFT */
+.login-left {
+    width: 50%;
+    padding: 40px;
+}
+
+.brand img {
+    width: 60px;
+    height : 60px;
+
+}
+
+.brand h2 {
+    margin: 15px 0 5px;
+}
+
+.brand p {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+label {
+    font-weight: 600;
+    margin-top: 15px;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+    .input:focus {
+        outline: none;
+        border-color: #6f8cff;
+    }
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.forgot {
+    color: #6f8cff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: #6f8cff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    .btn-login:hover {
+        background: #5a74e6;
+    }
+
+.error {
+    color: red;
+    font-size: 13px;
+}
+
+/* RIGHT */
+.login-right {
+    width: 50%;
+    background: #f4f7ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+    .login-right img {
+        width: 280px;
+    }
+
+    .login-right h3 {
+        margin-top: 20px;
+    }
+
+    .login-right p {
+        color: #666;
+        text-align: center;
+    }
+
+/* Register LINK */
+.register-link {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+    .register-link a {
+        color: #6f8cff;
+        text-decoration: none;
+    }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
